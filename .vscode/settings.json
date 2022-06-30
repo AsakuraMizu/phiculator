@@ -1,0 +1,15 @@
+{
+  "eslint.packageManager": "yarn",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "svelte"
+  ],
+  "svelte.enable-ts-plugin": true,
+  "eslint.validate": ["svelte"]
+}
