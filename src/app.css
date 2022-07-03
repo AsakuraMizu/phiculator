@@ -1,4 +1,23 @@
-/* Write your global styles here, in PostCSS syntax */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --toastContainerTop: auto;
+  --toastContainerRight: auto;
+  --toastContainerBottom: 1.5rem;
+  --toastContainerLeft: 2rem;
+}
+
+body {
+  height: 100vh;
+}
+
+._toastItem {
+  overflow: visible !important;
+}
+
+@font-face {
+  font-family: 'Exo Regular';
+  src: url('./assets/Exo-Regular.ttf');
+}
+
+.exo {
+  font-family: 'Exo Regular' !important;
+}

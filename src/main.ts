@@ -1,3 +1,6 @@
+import 'fluent-svelte/theme.css';
+import 'modern-normalize/modern-normalize.css';
+
 import './app.css';
 import App from './App.svelte';
 
