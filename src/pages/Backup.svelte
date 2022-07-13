@@ -1,7 +1,7 @@
 <script lang="ts">
   import byteSize from 'byte-size';
   import { Button, InfoBar, TextBlock } from 'fluent-svelte';
-  import readstream from '../utils/readstream';
+  import { readstream } from '../utils/stream';
   import { sendError } from '../utils/toast';
   import { data, device } from '../stores';
   import Pagination from '../components/Pagination.svelte';

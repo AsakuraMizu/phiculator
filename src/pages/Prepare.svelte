@@ -8,12 +8,11 @@
     send({
       title: '错误',
       message:
-        '您的浏览器不支持运行 Phiculator 所必需的 WebUSB 标准.<br />' +
+        '您的浏览器不支持从 Android 设备导入所必需的 WebUSB 标准.<br />' +
         '请使用最新版本的 Google Chrome、Microsoft Edge 或其他基于 Chromium 的浏览器.<br/>' +
         '您可以参考 <a href="https://caniuse.com/webusb" target="_blank"><i>Can I use...</i></a> ' +
         '了解哪些浏览器支持 WebUSB 标准.',
       severity: 'critical',
-      closable: false,
     });
   }
 </script>

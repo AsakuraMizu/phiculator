@@ -2,7 +2,7 @@
   import { Button, IconButton, TextBlock, TextBox } from 'fluent-svelte';
   import { XMLParser } from 'fast-xml-parser';
   import Pagination from '../components/Pagination.svelte';
-  import des2 from '../utils/des2';
+  import decrypt from '../utils/des';
   import { sendError } from '../utils/toast';
   import { readtext } from '../utils/readfile';
   import { playerID, records, type PlayRecord } from '../stores';
@@ -22,8 +22,8 @@
         try {
           if (e['@_name'] === 'playerID') playerID.set(e['#text']);
           else {
-            e['@_name'] = des2(decodeURIComponent(e['@_name']));
-            e['#text'] = des2(decodeURIComponent(e['#text']));
+            e['@_name'] = decrypt(decodeURIComponent(e['@_name']));
+            e['#text'] = decrypt(decodeURIComponent(e['#text']));
             if (/.*\.Record\..*/.test(e['@_name'])) result[e['@_name']] = JSON.parse(e['#text']);
           }
         } catch (e) {

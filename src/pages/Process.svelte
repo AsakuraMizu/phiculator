@@ -6,7 +6,7 @@
   import { XMLParser } from 'fast-xml-parser';
   import Pagination from '../components/Pagination.svelte';
   import TarReader from '../utils/untar';
-  import des2 from '../utils/des2';
+  import decrypt from '../utils/des';
   import { sendError } from '../utils/toast';
   import { data, playerID, records, type PlayRecord } from '../stores';
 
@@ -31,8 +31,8 @@
         try {
           if (e['@_name'] === 'playerID') playerID.set(e['#text']);
           else {
-            e['@_name'] = des2(decodeURIComponent(e['@_name']));
-            e['#text'] = des2(decodeURIComponent(e['#text']));
+            e['@_name'] = decrypt(decodeURIComponent(e['@_name']));
+            e['#text'] = decrypt(decodeURIComponent(e['#text']));
             if (/.*\.Record\..*/.test(e['@_name'])) result[e['@_name']] = JSON.parse(e['#text']);
           }
         } catch (e) {

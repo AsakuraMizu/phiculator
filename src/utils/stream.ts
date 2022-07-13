@@ -1,6 +1,6 @@
-import type { ReadableStream } from 'web-streams-polyfill/ponyfill';
+import type { ReadableStream, WritableStream } from 'web-streams-polyfill/ponyfill';
 
-export default async function readstream(stream: ReadableStream<Uint8Array>): Promise<Uint8Array> {
+export async function readstream(stream: ReadableStream<Uint8Array>): Promise<Uint8Array> {
   const reader = stream.getReader();
   const bufs: Uint8Array[] = [];
 
@@ -17,4 +17,14 @@ export default async function readstream(stream: ReadableStream<Uint8Array>): Pr
     return offset + buf.byteLength;
   }, 0);
   return result;
+}
+
+export async function writestream(
+  stream: WritableStream<Uint8Array>,
+  data: Uint8Array
+): Promise<void> {
+  const writer = stream.getWriter();
+  await writer.ready;
+  await writer.write(data);
+  await writer.ready;
 }

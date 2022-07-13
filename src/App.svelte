@@ -12,6 +12,9 @@
   import ImportXML from './pages/ImportXML.svelte';
   import ImportPlist from './pages/ImportPlist.svelte';
   import Report from './pages/Report.svelte';
+  import Import from './pages/Import.svelte';
+  import Export from './pages/Export.svelte';
+  import Restore from './pages/Restore.svelte';
 
   import bg from './assets/bloom-mica-light.png';
 
@@ -47,6 +50,16 @@
     </Route>
     <Route path="/report">
       <Page><Report /></Page>
+    </Route>
+    <!-- hidden pages -->
+    <Route path="/import">
+      <Page><Import /></Page>
+    </Route>
+    <Route path="/export">
+      <Page><Export /></Page>
+    </Route>
+    <Route path="/restore">
+      <Page><Restore /></Page>
     </Route>
   </section>
 </main>
