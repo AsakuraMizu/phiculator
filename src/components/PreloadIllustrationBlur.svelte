@@ -13,7 +13,7 @@
 <script lang="ts">
   export let songsId: string;
 
-  $: src = `https://cdn.rushia.icu/static/apps/phigros/Tracks/${songsId}/IllustrationBlur.png`;
+  $: src = `https://yuhao7370.gitee.io/phigros-resources/res/${songsId}.png`;
 
   const preload = async () => {
     return new Promise<void>((resolve, reject) => {

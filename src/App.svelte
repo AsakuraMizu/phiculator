@@ -16,7 +16,8 @@
   import Export from './pages/Export.svelte';
   import Restore from './pages/Restore.svelte';
 
-  import bg from './assets/bloom-mica-light.png';
+  import bgLight from './assets/bloom-mica-light.png';
+  import bgDark from './assets/bloom-mica-dark.png';
 
   router.mode.hash();
 </script>
@@ -26,7 +27,9 @@
 <Navbar />
 
 <main>
-  <section style={`--bg: url(${bg}) 50%/170% no-repeat`}>
+  <section
+    style={`--bgLight: url(${bgLight}) 50%/170% no-repeat; --bgDark: url(${bgDark}) 50%/170% no-repeat`}
+  >
     <Route path="/">
       <Page><Hello /></Page>
     </Route>
@@ -67,12 +70,18 @@
 <style>
   section {
     position: relative;
-    background: var(--bg);
+    background: var(--bgLight);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
     min-block-size: 100vh;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    section {
+      background: var(--bgDark);
+    }
   }
 </style>

@@ -5,7 +5,7 @@
   import decrypt from '../utils/des';
   import { sendError } from '../utils/toast';
   import { readtext } from '../utils/readfile';
-  import { playerID, records, type PlayRecord } from '../stores';
+  import { challengeModeRank, playerID, records, type PlayRecord } from '../stores';
 
   let input: HTMLInputElement;
   let fileList: FileList;
@@ -19,16 +19,19 @@
       const xml = xp.parse(text, true);
       const result: Record<string, PlayRecord> = {};
       xml.map.string.forEach((e: Record<string, string>) => {
+        let name = e['@_name'],
+          text = e['#text'];
         try {
-          if (e['@_name'] === 'playerID') playerID.set(e['#text']);
-          else {
-            e['@_name'] = decrypt(decodeURIComponent(e['@_name']));
-            e['#text'] = decrypt(decodeURIComponent(e['#text']));
-            if (/.*\.Record\..*/.test(e['@_name'])) result[e['@_name']] = JSON.parse(e['#text']);
-          }
+          name = decrypt(decodeURIComponent(e['@_name']));
+          text = decrypt(decodeURIComponent(e['#text']));
+          console.log(name, text);
         } catch (e) {
           /***/
+          console.error(e);
         }
+        if (name === 'playerID') playerID.set(text);
+        else if (name === 'ChallengeModeRank') challengeModeRank.set(Number.parseInt(text));
+        else if (/.*\.Record\..*/.test(name)) result[name] = JSON.parse(text);
       });
       records.set(result);
     } catch (e) {

@@ -8,7 +8,7 @@
   import TarReader from '../utils/untar';
   import decrypt from '../utils/des';
   import { sendError } from '../utils/toast';
-  import { data, playerID, records, type PlayRecord } from '../stores';
+  import { challengeModeRank, data, playerID, records, type PlayRecord } from '../stores';
 
   const process = () => {
     const source = get(data);
@@ -28,16 +28,17 @@
       const xml = xp.parse(text, true);
       const result: Record<string, PlayRecord> = {};
       xml.map.string.forEach((e: Record<string, string>) => {
+        let name = e['@_name'],
+          text = e['#text'];
         try {
-          if (e['@_name'] === 'playerID') playerID.set(e['#text']);
-          else {
-            e['@_name'] = decrypt(decodeURIComponent(e['@_name']));
-            e['#text'] = decrypt(decodeURIComponent(e['#text']));
-            if (/.*\.Record\..*/.test(e['@_name'])) result[e['@_name']] = JSON.parse(e['#text']);
-          }
+          name = decrypt(decodeURIComponent(e['@_name']));
+          text = decrypt(decodeURIComponent(e['#text']));
         } catch (e) {
           /***/
         }
+        if (name === 'playerID') playerID.set(text);
+        else if (name === 'ChallengeModeRank') challengeModeRank.set(Number.parseInt(text));
+        else if (/.*\.Record\..*/.test(name)) result[name] = JSON.parse(text);
       });
       records.set(result);
     } catch (e) {

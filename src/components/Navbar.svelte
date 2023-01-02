@@ -29,7 +29,7 @@
     min-block-size: 56px;
     position: fixed;
     z-index: 1000;
-    background-color: hsla(0, 0%, 100%, 50%);
+    background-color: var(--fds-layer-background-default);
   }
 
   .navbar-inner {

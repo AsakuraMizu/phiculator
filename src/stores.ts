@@ -7,7 +7,8 @@ export const device = writable<Adb>();
 
 export const data = writable<Uint8Array>();
 
-export const playerID = persistent<string>('playerId');
+export const playerID = persistent<string>('playerID');
+export const challengeModeRank = persistent<number>('challengeModeRank');
 
 export interface PlayRecord {
   s: number; // score

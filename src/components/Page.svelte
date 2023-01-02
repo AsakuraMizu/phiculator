@@ -9,10 +9,10 @@
 <style>
   div {
     position: fixed;
-    background-color: hsla(0, 0%, 100%, 70%);
+    background-color: var(--fds-card-background-default);
     border-radius: 8px;
     padding: 12px;
-    box-shadow: 0px 8px 16px hsla(0, 0%, 0%, 14%);
+    box-shadow: var(--fds-card-shadow);
     min-inline-size: 400px;
     min-block-size: 400px;
   }
